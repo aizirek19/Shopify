@@ -3,7 +3,7 @@ package com.ecommerce.Shopify.service;
 import com.ecommerce.Shopify.dto.PaymentDTO;
 import com.ecommerce.Shopify.entities.Payment;
 import com.ecommerce.Shopify.mappers.PaymentMapper;
-import com.ecommerce.Shopify.repository.PaymentRepository;
+import com.ecommerce.Shopify.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

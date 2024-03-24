@@ -3,7 +3,7 @@ package com.ecommerce.Shopify.service;
 import com.ecommerce.Shopify.dto.UserDTO;
 import com.ecommerce.Shopify.entities.User;
 import com.ecommerce.Shopify.mappers.UserMapper;
-import com.ecommerce.Shopify.repository.UserRepository;
+import com.ecommerce.Shopify.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

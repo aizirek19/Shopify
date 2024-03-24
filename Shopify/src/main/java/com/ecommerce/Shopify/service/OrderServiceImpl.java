@@ -2,8 +2,9 @@ package com.ecommerce.Shopify.service;
 
 import com.ecommerce.Shopify.dto.OrderDTO;
 import com.ecommerce.Shopify.entities.Order;
+import com.ecommerce.Shopify.exceptions.OrderNotFoundException;
 import com.ecommerce.Shopify.mappers.OrderMapper;
-import com.ecommerce.Shopify.repository.OrderRepository;
+import com.ecommerce.Shopify.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,31 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Object createOrder(OrderDTO orderDTO) {
+        Order order = OrderMapper.toEntity(orderDTO);
+        Order savedOrder = orderRepository.save(order);
+        return OrderMapper.toDTO(savedOrder);
+    }
+
+    @Override
+    public Object updateOrder(Long orderId, OrderDTO orderDTO) {
+        Order existingOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + orderId));
+
+        Order updatedOrder = OrderMapper.toEntity(orderDTO);
+        updatedOrder.setId(existingOrder.getId());
+        Order savedOrder = orderRepository.save(updatedOrder);
+        return OrderMapper.toDTO(savedOrder);
+    }
+
+    @Override
+    public void deleteOrder(Long orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + orderId));
+        orderRepository.delete(order);
+    }
+
+    @Override
     public List<Object> getAllOrders() {
         List<Order> orders = orderRepository.findAll();
         return orders.stream()
@@ -30,22 +56,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO getOrderById(Long orderId) {
-        return null;
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + orderId));
+        return OrderMapper.toDTO(order);
     }
-
-    @Override
-    public void createOrder(OrderDTO orderDTO) {
-
-    }
-
-    @Override
-    public void updateOrder(Long orderId, OrderDTO orderDTO) {
-
-    }
-
-    @Override
-    public void deleteOrder(Long orderId) {
-
-    }
-
 }

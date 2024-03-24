@@ -27,4 +27,14 @@ public class Address {
         this.zipCode = zipCode;
         this.user = user;
     }
+
+    public Address(long l, String s, String s1) {
+    }
+
+    public void setCountry(String testCountry) {
+    }
+
+    public short getCountry() {
+        return 0;
+    }
 }

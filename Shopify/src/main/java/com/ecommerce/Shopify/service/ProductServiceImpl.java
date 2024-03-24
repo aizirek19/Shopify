@@ -4,7 +4,7 @@ import com.ecommerce.Shopify.dto.ProductDTO;
 import com.ecommerce.Shopify.entities.Product;
 import com.ecommerce.Shopify.mappers.ProductMapper;
 //import com.ecommerce.Shopify.repositories.ProductRepository;
-import com.ecommerce.Shopify.repository.ProductRepository;
+import com.ecommerce.Shopify.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,18 +37,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(ProductDTO productDTO) {
+    public ProductDTO createProduct(ProductDTO productDTO) {
         Product product = ProductMapper.toEntity(productDTO);
         productRepository.save(product);
+        return productDTO;
     }
 
     @Override
-    public void updateProduct(Long productId, ProductDTO productDTO) {
+    public ProductDTO updateProduct(Long productId, ProductDTO productDTO) {
         Product existingProduct = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found with id: " + productId));
         Product updatedProduct = ProductMapper.toEntity(productDTO);
         updatedProduct.setId(existingProduct.getId());
         productRepository.save(updatedProduct);
+        return productDTO;
     }
 
     @Override

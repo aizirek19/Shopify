@@ -41,4 +41,11 @@ public class OrderDTO {
     public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
+
+    public void setOrderName(String testOrder) {
+    }
+
+    public short getOrderName() {
+        return 0;
+    }
 }
