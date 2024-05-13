@@ -22,8 +22,8 @@ public class AddressController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AddressDTO>> getAllAddresses() {
-        List<AddressDTO> addresses = addressService.getAllAddresses();
+    public ResponseEntity<List<Object>> getAllAddresses() {
+        List<Object> addresses = addressService.getAllAddresses();
         return ResponseEntity.ok(addresses);
     }
 

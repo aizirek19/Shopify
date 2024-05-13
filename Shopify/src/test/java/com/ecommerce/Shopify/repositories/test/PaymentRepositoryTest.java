@@ -3,7 +3,7 @@ import com.ecommerce.Shopify.entities.Order;
 import com.ecommerce.Shopify.entities.Payment;
 
 //import com.ecommerce.Shopify.repositories.PaymentRepository;
-import com.ecommerce.Shopify.repository.PaymentRepository;
+import com.ecommerce.Shopify.repositories.PaymentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

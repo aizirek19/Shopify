@@ -47,4 +47,11 @@ public class AddressDTO {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public String getCountry() {
+        return null;
+    }
+
+    public void setCountry(String testCountry) {
+    }
 }

@@ -31,4 +31,18 @@ public class Order {
     public Order() {
 
     }
+
+    public void setUserId(long l) {
+    }
+
+    public short getUserId() {
+        return 0;
+    }
+
+    public void setOrderName(String testOrder) {
+    }
+
+    public short getOrderName() {
+        return 0;
+    }
 }

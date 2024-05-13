@@ -10,9 +10,9 @@ public interface OrderService {
 
     OrderDTO getOrderById(Long orderId);
 
-    void createOrder(OrderDTO orderDTO);
+    Object createOrder(OrderDTO orderDTO);
 
-    void updateOrder(Long orderId, OrderDTO orderDTO);
+    Object updateOrder(Long orderId, OrderDTO orderDTO);
 
     void deleteOrder(Long orderId);
 }

@@ -1,6 +1,6 @@
 package com.ecommerce.Shopify.repositories.test;
 import com.ecommerce.Shopify.entities.User;
-import com.ecommerce.Shopify.repository.UserRepository;
+import com.ecommerce.Shopify.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

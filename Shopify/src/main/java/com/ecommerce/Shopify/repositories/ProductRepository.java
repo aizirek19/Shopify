@@ -1,4 +1,4 @@
-package com.ecommerce.Shopify.repository;
+package com.ecommerce.Shopify.repositories;
 
 import com.ecommerce.Shopify.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -3,7 +3,7 @@ package com.ecommerce.Shopify.repositories.test;
 import com.ecommerce.Shopify.entities.Address;
 import com.ecommerce.Shopify.entities.User;
 //import com.ecommerce.Shopify.repositories.AddressRepository;
-import com.ecommerce.Shopify.repository.AddressRepository;
+import com.ecommerce.Shopify.repositories.AddressRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

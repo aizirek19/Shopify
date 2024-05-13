@@ -7,7 +7,7 @@ import java.util.List;
 public interface AddressService {
     AddressDTO getAddressById(Long addressId);
     List<Object> getAllAddresses();
-    void createAddress(AddressDTO addressDTO);
-    void updateAddress(Long addressId, AddressDTO addressDTO);
+    AddressDTO createAddress(AddressDTO addressDTO);
+    AddressDTO updateAddress(Long addressId, AddressDTO addressDTO);
     void deleteAddress(Long addressId);
 }

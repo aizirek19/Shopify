@@ -24,4 +24,6 @@ public class Product {
         this.quantityAvailable = quantityAvailable;
     }
 
+    public Product(String s, double v) {
+    }
 }

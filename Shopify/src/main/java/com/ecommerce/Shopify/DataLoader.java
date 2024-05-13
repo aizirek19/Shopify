@@ -4,15 +4,14 @@ import com.ecommerce.Shopify.entities.Order;
 import com.ecommerce.Shopify.entities.Payment;
 import com.ecommerce.Shopify.entities.Product;
 import com.ecommerce.Shopify.entities.User;
-import com.ecommerce.Shopify.repository.OrderRepository;
-import com.ecommerce.Shopify.repository.PaymentRepository;
-import com.ecommerce.Shopify.repository.ProductRepository;
-import com.ecommerce.Shopify.repository.UserRepository;
+import com.ecommerce.Shopify.repositories.OrderRepository;
+import com.ecommerce.Shopify.repositories.PaymentRepository;
+import com.ecommerce.Shopify.repositories.ProductRepository;
+import com.ecommerce.Shopify.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
-import java.util.List;
 import java.time.LocalDateTime;
 
 @Component

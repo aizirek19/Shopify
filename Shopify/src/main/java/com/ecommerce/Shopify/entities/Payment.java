@@ -24,5 +24,7 @@ public class Payment {
         this.order = order;
     }
 
+    public void setOrderId(long l) {
+    }
 }
 
