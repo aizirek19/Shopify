@@ -1,53 +1,50 @@
 package com.ecommerce.Shopify.controllers;
 
-import com.ecommerce.Shopify.dto.UserDTO;
-//import com.ecommerce.Shopify.services.UserService;
+import com.ecommerce.Shopify.service.ProductService;
 import com.ecommerce.Shopify.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.HashMap;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
-
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    UserService userService;
+    @Autowired
+    ProductService productService;
+
+    //  user details
+
+    @GetMapping("/current_user")
+    public Object getCurretUser() {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        HashMap<String, String> user = new HashMap<String, String>();
+        user.put("userName", loggedInUser.getName());
+        String role = "";
+        for(GrantedAuthority gta : loggedInUser.getAuthorities()) {
+            role += "," + gta.getAuthority().substring(5);
+        }
+        user.put("role", role.substring(1));
+        return user;
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
-        return ResponseEntity.ok(users);
-    }
+//    @GetMapping("/user/{userName}")
+//    public ResponseEntity<User> getUser(@PathVariable String userName) {
+//        return userService.getUser(userName);
+//    }
+//
+//    @GetMapping("/users")
+//    public ResponseEntity<List<User>> getUsers() {
+//        return userService.getUsers();
+//    }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Long userId) {
-        UserDTO user = userService.getUserById(userId);
-        return ResponseEntity.ok(user);
-    }
 
-    @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        userService.createUser(userDTO);
-        return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{userId}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
-        userService.updateUser(userId, userDTO);
-        return ResponseEntity.ok(userDTO);
-    }
-
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        userService.deleteUser(userId);
-        return ResponseEntity.noContent().build();
-    }
 }

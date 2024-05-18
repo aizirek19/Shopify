@@ -1,7 +1,7 @@
 package com.ecommerce.Shopify.entities;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 @Data
 @Entity
 public class Payment {

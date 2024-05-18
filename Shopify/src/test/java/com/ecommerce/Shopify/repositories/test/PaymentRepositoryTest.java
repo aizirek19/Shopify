@@ -27,7 +27,7 @@ public class PaymentRepositoryTest {
         paymentRepository.save(payment);
 
         // Act
-        List<Payment> foundPayments = paymentRepository.findByOrderId(order.getId());
+        List<Payment> foundPayments = paymentRepository.findByPaymentId(order.getId());
 
         // Assert
         assertThat(foundPayments.size()).isEqualTo(1);

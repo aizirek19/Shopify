@@ -1,13 +1,26 @@
 package com.ecommerce.Shopify.service;
 
-import com.ecommerce.Shopify.dto.UserDTO;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.List;
+public interface UserService extends UserDetailsService {
 
-public interface UserService {
-    UserDTO getUserById(Long userId);
-    List<UserDTO> getAllUsers();
-    void createUser(UserDTO userDTO);
-    void updateUser(Long userId, UserDTO userDTO);
+//    public ResponseEntity<User> getUser(String email) {
+//        Optional<User> result = customUserRepository.findByEmail(email);
+//        User user = new User();
+//        if(result.isPresent()) {
+//            user = result.get();
+//        }
+
+    @Override
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
+
+    //    public ResponseEntity<List<User>> getUsers() {
+//        List<User> users = customUserRepository.findAll();
+//        return new ResponseEntity<>(users, HttpStatus.OK);
+//    }
     void deleteUser(Long userId);
 }

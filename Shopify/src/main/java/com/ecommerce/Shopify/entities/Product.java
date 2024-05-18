@@ -1,7 +1,10 @@
 package com.ecommerce.Shopify.entities;
+
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 public class Product {
@@ -13,6 +16,12 @@ public class Product {
     private String description;
     private double price;
     private int quantityAvailable;
+
+    @ManyToOne
+    private User seller;
+
+    @ManyToMany(mappedBy = "products")
+    private List<Order> orderList;
 
     public Product() {
     }

@@ -1,14 +1,13 @@
 package com.ecommerce.Shopify;
 
-import com.ecommerce.Shopify.entities.Order;
-import com.ecommerce.Shopify.entities.Payment;
-import com.ecommerce.Shopify.entities.Product;
-import com.ecommerce.Shopify.entities.User;
+import com.ecommerce.Shopify.entities.*;
+import com.ecommerce.Shopify.exceptions.ProductNotFoundException;
 import com.ecommerce.Shopify.repositories.OrderRepository;
 import com.ecommerce.Shopify.repositories.PaymentRepository;
 import com.ecommerce.Shopify.repositories.ProductRepository;
 import com.ecommerce.Shopify.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
@@ -33,7 +32,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Insert sample users
+
         userRepository.saveAll(Arrays.asList(
                 new User("john_doe", "john@example.com", "password123"),
                 new User("jane_smith", "jane@example.com", "password456")
@@ -46,14 +45,18 @@ public class DataLoader implements CommandLineRunner {
         ));
 
         // Insert sample orders
-        Order order1 = new Order(LocalDateTime.parse("2024-03-23T10:00:00"), userRepository.findById(1L).get());
-        Order order2 = new Order(LocalDateTime.parse("2024-03-24T11:00:00"), userRepository.findById(2L).get());
+        System.out.println(1);
+        Order order1 = new Order(LocalDateTime.now(), userRepository.findById(1L).orElseThrow(() -> new UsernameNotFoundException("User not found !")));
+        Order order2 = new Order(LocalDateTime.now(), userRepository.findById(2L).orElseThrow(() -> new UsernameNotFoundException("User not found !")));
+        System.out.println(2);
         orderRepository.saveAll(Arrays.asList(order1, order2));
-
+        System.out.println(3);
         // Insert sample products for orders
-        order1.setProducts(Arrays.asList(productRepository.findById(1L).get(), productRepository.findById(2L).get()));
-        order2.setProducts(Arrays.asList(productRepository.findById(2L).get()));
+        order1.setProducts(Arrays.asList(productRepository.findById(1L).orElseThrow(() -> new ProductNotFoundException("Product not found !")), productRepository.findById(2L).orElseThrow(() -> new ProductNotFoundException("Product not found !"))));
+        order2.setProducts(Arrays.asList(productRepository.findById(1L).orElseThrow(() -> new ProductNotFoundException("Product not found !")), productRepository.findById(2L).orElseThrow(() -> new ProductNotFoundException("Product not found !"))));
+        System.out.println(4);
         orderRepository.saveAll(Arrays.asList(order1, order2));
+        System.out.println(5);
 
         // Insert sample payments
         paymentRepository.saveAll(Arrays.asList(
